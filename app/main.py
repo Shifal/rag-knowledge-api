@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import Base, engine, ensure_pgvector_extension
 from app import models
+from app.routers import auth
 
 logging.basicConfig(
     level=logging.INFO,
@@ -11,6 +12,8 @@ logging.basicConfig(
 )
 
 app = FastAPI(title="RAG Knowledge API")
+
+app.include_router(auth.router)
 
 app.add_middleware(
     CORSMiddleware,
