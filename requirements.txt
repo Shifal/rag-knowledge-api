@@ -1,0 +1,17 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+psycopg2-binary
+pgvector
+pydantic
+pydantic-settings
+python-dotenv
+google-genai
+python-jose[cryptography]
+bcrypt
+pypdf
+langchain
+langchain-community
+langgraph
+pytest
+httpx
