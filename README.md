@@ -22,16 +22,13 @@ Built with **FastAPI**, **PostgreSQL + pgvector**, **LangChain**, **LangGraph**,
 ```mermaid
 flowchart TB
     Client([Client]) -->|Bearer JWT| API[FastAPI App]
-
     API --> Auth[Auth Router]
     API --> Docs[Documents Router]
     API --> Query[Query Router]
-
-    Docs --> Ingest[Ingestion Pipeline<br/>extract → chunk → embed]
-    Query --> Graph[RAG Graph — LangGraph]
-
-    Ingest --> DB[(PostgreSQL + pgvector)]
-    Graph <--> DB
+    Docs --> Ingest[Ingestion Pipeline]
+    Query --> Graph[RAG Graph]
+    Ingest --> DB[(PostgreSQL plus pgvector)]
+    Graph --> DB
 ```
 
 ---
@@ -42,12 +39,12 @@ Every question runs through a small LangGraph state machine — this is what mak
 
 ```mermaid
 flowchart TD
-    Q([Question]) --> Router{Needs document<br/>lookup?}
+    Q([Question]) --> Router{Needs document lookup?}
     Router -- No --> General[Generate plain response]
-    Router -- Yes --> Retrieve[Retrieve top-matching chunks]
-    Retrieve --> Generate[Generate answer<br/>from retrieved chunks only]
-    Generate --> Verify{Answer supported<br/>by context?}
-    Verify --> Result([Return answer + citations + grounded flag])
+    Router -- Yes --> Retrieve[Retrieve top matching chunks]
+    Retrieve --> Generate[Generate answer from chunks]
+    Generate --> Verify{Answer supported by context?}
+    Verify --> Result([Return answer with citations])
     General --> Result
 ```
 
@@ -80,7 +77,7 @@ flowchart TD
 erDiagram
     COMPANY ||--o{ USER : has
     COMPANY ||--o{ KNOWLEDGE_DOCUMENT : owns
-    KNOWLEDGE_DOCUMENT ||--o{ DOCUMENT_CHUNK : "split into"
+    KNOWLEDGE_DOCUMENT ||--o{ DOCUMENT_CHUNK : contains
     COMPANY ||--o{ QUERY_LOG : logs
 
     COMPANY {
