@@ -34,3 +34,18 @@ class DocumentChunkOut(BaseModel):
 
     class Config:
         from_attributes = True
+
+class QueryRequest(BaseModel):
+    question: str
+
+
+class CitationOut(BaseModel):
+    chunk_id: str
+    document_filename: str
+    chunk_text: str
+
+
+class QueryResponseOut(BaseModel):
+    answer: str
+    was_grounded: bool
+    citations: List[CitationOut]
