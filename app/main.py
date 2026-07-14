@@ -6,6 +6,7 @@ from app.database import Base, engine, ensure_pgvector_extension
 from app import models
 from app.routers import auth
 from app.routers import auth, documents
+from app.routers import auth, documents, query
 
 logging.basicConfig(
     level=logging.INFO,
@@ -16,6 +17,7 @@ app = FastAPI(title="RAG Knowledge API")
 
 app.include_router(auth.router)
 app.include_router(documents.router)
+app.include_router(query.router)
 
 app.add_middleware(
     CORSMiddleware,
