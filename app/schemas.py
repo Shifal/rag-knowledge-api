@@ -26,3 +26,11 @@ class KnowledgeDocumentOut(BaseModel):
 
     class Config:
         from_attributes = True
+
+class DocumentChunkOut(BaseModel):
+    id: str
+    chunk_index: int
+    chunk_text: str
+
+    class Config:
+        from_attributes = True

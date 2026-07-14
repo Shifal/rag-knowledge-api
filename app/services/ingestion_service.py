@@ -1,5 +1,6 @@
 from pypdf import PdfReader
 import io
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
 def extract_text_from_pdf(file_bytes: bytes) -> str:
@@ -22,3 +23,12 @@ def extract_text_from_upload(filename: str, file_bytes: bytes) -> str:
         return file_bytes.decode("utf-8", errors="ignore")
     else:
         raise ValueError(f"Unsupported file type: {filename}")
+    
+
+def chunk_text(text: str, chunk_size: int = 1000, chunk_overlap: int = 150) -> list[str]:
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=chunk_size,
+        chunk_overlap=chunk_overlap,
+        separators=["\n\n", "\n", ". ", " ", ""],
+    )
+    return splitter.split_text(text)
