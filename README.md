@@ -4,6 +4,10 @@ A backend API where a company uploads its own documents and asks questions about
 
 Built with **FastAPI**, **PostgreSQL + pgvector**, **LangChain**, **LangGraph**, and **Gemini**.
 
+🔗 **Live demo:** [https://rag-knowledge-api.onrender.com/docs](https://rag-knowledge-api.onrender.com/docs)
+
+> Hosted on Render's free tier — the service spins down after inactivity, so the first request may take 30-60 seconds while it wakes up.
+
 ---
 
 ## What It Does
