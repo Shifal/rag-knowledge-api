@@ -16,3 +16,4 @@ langgraph
 pytest
 httpx
 langchain-text-splitters
+python-multipart
