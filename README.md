@@ -196,6 +196,23 @@ The `vector` extension is enabled and all tables are created automatically on st
 
 ---
 
+## Testing
+
+```bash
+pytest -v
+```
+
+All Gemini calls (embeddings, generation, groundedness checks) are mocked, so the test suite runs in seconds and uses zero API quota.
+
+Coverage includes:
+- Document upload, chunking, and unsupported file type rejection
+- The router's branching behavior — general questions skip retrieval, document questions trigger it
+- The groundedness flag correctly reflecting whether an answer is flagged as supported or not
+- Multi-tenant isolation between two companies
+- Rejection of unauthenticated requests
+
+---
+
 ## Future Enhancements
 
 - Support for more file types (`.docx`, `.md`)
